@@ -1,8 +1,19 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { useDispatch, useSelector } from 'react-redux'
+import { logoutUser } from '../redux/apiRequest'
+import { useNavigation } from '@react-navigation/native'
 
 const AccountScreen = () => {
+  const user = useSelector((state)=>state.user.login.currentUser)
+  const token  = user.accessToken
+
+  const navigation = useNavigation()
+  const dispatch = useDispatch();
+  const handlePress = () =>{
+      logoutUser(token,user,dispatch)
+  }
   return (
     <SafeAreaView className="">
       <View className="justify-center items-center pb-2">
@@ -40,7 +51,7 @@ const AccountScreen = () => {
           <Text> </Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity style={{ elevation: 4, borderRadius: 5 }} className="mb-4 mx-3 bg-white flex justify-center h-16">
+      <TouchableOpacity onPress={()=>handlePress()} style={{ elevation: 4, borderRadius: 5 }} className="mb-4 mx-3 bg-white flex justify-center h-16">
         <Text className="pl-4 text-xl ">Đăng xuất</Text>
       </TouchableOpacity>
           <View className="justify-center items-center">

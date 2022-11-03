@@ -3,7 +3,8 @@ import React, { useLayoutEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+import { loginUser } from '../redux/apiRequest';
 
 // import { loginUser } from '../redux/apiRequest';
 const LoginScreen = () => {
@@ -14,6 +15,7 @@ const LoginScreen = () => {
 
 
     const navigation = useNavigation();
+    const dispatch = useDispatch();
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -21,13 +23,12 @@ const LoginScreen = () => {
         });
     }, []);
 
-    const handleLogin = async() => {
+    const handleLogin = () => {
         const newUser = {
             email,password
         }
-        // await loginUser(newUser)
-        console.log(newUser);
-        // navigation.goBack()
+         loginUser(newUser,dispatch)
+        navigation.navigate('Onboarding')
     }
     return (
         <SafeAreaView className="flex-1 bg-white ">

@@ -5,20 +5,38 @@ import {
   Button,
   TouchableOpacity,
   Image,
+  ActivityIndicator,
 } from "react-native";
 
 import React, { useLayoutEffect } from "react";
 import {useNavigation } from "@react-navigation/native";
+import AppStack from "../navigation/AppStack";
+import { useSelector } from "react-redux";
 
 const OnboardingScreen = () => {
+
+  const user = useSelector((state)=>state.user?.login.currentUser)
+  const loading = useSelector((state)=>state.user?.login.isFetching)
   const navigation = useNavigation();
+  
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
   }, []);
+
+  if (loading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size={"large"} />
+      </View>
+    );
+  }
   return (
-    <SafeAreaView className="">
+   <>
+    {
+      !user ? (
+        <SafeAreaView className="">
       <View>
         <Image
           className="object-right relative"
@@ -37,6 +55,8 @@ const OnboardingScreen = () => {
         </TouchableOpacity>
       </View>
     </SafeAreaView>
+      ) : ( <AppStack />)
+    }</>
   );
 };
 

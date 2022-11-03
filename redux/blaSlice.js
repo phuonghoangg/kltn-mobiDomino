@@ -1,8 +1,8 @@
 import {createSlice} from '@reduxjs/toolkit'
-const userSlice = createSlice({
+const blaSlice = createSlice({
     name:'bla',
     initialState:{
-        name:"asd",
+        name:"",
         age:"sadasd"
     },reducers:{
         update:(state,action)=>{
@@ -12,5 +12,5 @@ const userSlice = createSlice({
     }
 })
 
-export const {update} = userSlice.actions
-export default userSlice.reducer
+export const {update} = blaSlice.actions
+export default blaSlice.reducer
