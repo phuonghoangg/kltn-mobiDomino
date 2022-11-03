@@ -7,7 +7,8 @@ import {useSelector} from 'react-redux'
 
 // import { loginUser } from '../redux/apiRequest';
 const LoginScreen = () => {
-    
+    // const user = useSelector((state)=>state.bla)
+    // console.log(user);
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 

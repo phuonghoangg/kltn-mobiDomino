@@ -9,7 +9,9 @@ import MenuScreen from '../screens/MenuScreen';
 import CartScreen from '../screens/CartScreen';
 import AccountScreen from '../screens/AccountScreen';
 import { useNavigation } from '@react-navigation/native';
-// import { HomeIcon,ClipboardDocumentIcon, ShoppingCartIcon, UserCircleIcon } from 'react-native-heroicons/outline';
+import { HomeIcon,ClipboardDocumentIcon, ShoppingCartIcon, UserCircleIcon } from 'react-native-heroicons/outline';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome'
+import {faX} from '@fortawesome/free-solid-svg-icons'
 import HomeTabNavigator from './HomeTabNavigator';
 const Tab = createMaterialBottomTabNavigator();
 const MyTab = () => {
@@ -31,7 +33,7 @@ const MyTab = () => {
                 component={HomeTabNavigator}
                 options={{
                     tabBarLabel: 'Home',
-                    // tabBarIcon: ({ color }) => <HomeIcon name="home" color={color} size={26} />,
+                    tabBarIcon: ({ color }) => <HomeIcon color={color} size={26}/>,
                 }}
             />
             <Tab.Screen
@@ -39,7 +41,7 @@ const MyTab = () => {
                 component={MenuScreen}
                 options={{
                     tabBarLabel: 'Menu',
-                    // tabBarIcon: ({ color }) => <ClipboardDocumentIcon name="menu" color={color} size={26} />,
+                    tabBarIcon: ({ color }) => <ClipboardDocumentIcon name="menu" color={color} size={26} />,
                 }}
             />
             <Tab.Screen
@@ -47,7 +49,7 @@ const MyTab = () => {
                 component={CartScreen}
                 options={{
                     tabBarLabel: 'Cart',
-                    // tabBarIcon: ({ color }) => <ShoppingCartIcon name="cart" color={color} size={26} />,
+                    tabBarIcon: ({ color }) => <ShoppingCartIcon name="cart" color={color} size={26} />,
                 }}
             />
             <Tab.Screen
@@ -55,7 +57,7 @@ const MyTab = () => {
                 component={AccountScreen}
                 options={{
                     tabBarLabel: 'Account',
-                    // tabBarIcon: ({ color }) => <UserCircleIcon name="user" color={color} size={26} />,
+                    tabBarIcon: ({ color }) => <UserCircleIcon name="user" color={color} size={26} />,
                 }}
             />
         </Tab.Navigator>
