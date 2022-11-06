@@ -3,25 +3,29 @@ import React, { useState } from 'react'
 import { useRoute } from '@react-navigation/native'
 import { RadioButton } from 'react-native-paper';
 import BasketIcon from '../components/basketIcon/BasketIcon';
+import { useSelector } from 'react-redux';
 
 
 const DetailScreen = () => {
-
+    const user = useSelector((state)=>state.user.login?.currentUser)
     const [checked, setChecked] = useState('');
     const [priceProduct, setPriceProduct] = useState(0)
     const [chooseSizeType,setChooseSizeType] = useState('')
     const route = useRoute();
     const { data } = route.params
 
-    const dataDetail = {
+    const dataDetailPizza = {
         priceProduct,
         chooseSizeType,
-        
+        dataProduct: data
     }
-   
+    const dataDetailOrder = {
+        priceProduct : data.priceC,
+        dataProduct:data
+    }
     return (
        <>
-            <BasketIcon data={dataDetail}/>
+            <BasketIcon data={data.type ==='pizza' ? dataDetailPizza : dataDetailOrder}/>
 
             <ScrollView className="mb-20 bg-gray-50">
                 <View>
@@ -34,7 +38,7 @@ const DetailScreen = () => {
                     <Text className="text-gray-400 font-normal pt-2 text-lg italic">Nguyên liệu: {data.ingredient}</Text>
     
                 </View>
-                <View className="px-2 pt-4">
+                {data.type ==='pizza' ? (<View className="px-2 pt-4">
                     <Text className="text-2xl font-bold text-sky-800">Chọn kích thước bánh và loại đế</Text>
     
                     {/* Đế nhỏ */}
@@ -184,7 +188,9 @@ const DetailScreen = () => {
                             </View>
                         </View>
                     </View>
-                </View>
+                </View>) : (
+                    <View></View>
+                )}
     
             </ScrollView>
        </>

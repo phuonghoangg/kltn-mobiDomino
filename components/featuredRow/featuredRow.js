@@ -39,9 +39,9 @@ const FeaturedRow = ({ id, title, description, featureCategory }) => {
   const dataProduct = useSelector((state)=>state.product.products.allProduct)
     const navigation = useNavigation()
     const dispatch = useDispatch()
-
+    const type = 'pizza'
     useEffect(()=>{
-      getAllProduct(dispatch)
+      getAllProduct(dispatch,type)
     },[])
   return (
     <View>

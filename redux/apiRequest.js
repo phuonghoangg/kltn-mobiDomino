@@ -26,10 +26,10 @@ export const logoutUser = async(accessToken,user,dispatch)=>{
     }
 }
 
-export const getAllProduct = async (dispatch) =>{
+export const getAllProduct = async (dispatch,type) =>{
     dispatch(getAllProductStart())
     try {
-        const res = await axios.get(`${host}/v2/product`);
+        const res = await axios.get(`${host}/v2/product/f/${type}`);
         dispatch(getAllProductSuccess(res.data));
     } catch (error) {
         dispatch(getAllProductFail())
