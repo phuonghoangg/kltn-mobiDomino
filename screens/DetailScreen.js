@@ -14,7 +14,9 @@ const DetailScreen = () => {
     const { data } = route.params
 
     const dataDetail = {
-        priceProduct,chooseSizeType
+        priceProduct,
+        chooseSizeType,
+        
     }
    
     return (
@@ -27,8 +29,8 @@ const DetailScreen = () => {
                         className="w-full h-56 bg-gray-300 p-4" />
                 </View>
                 <View className="px-2 pt-4">
-                    <Text className="text-2xl font-bold text-sky-800">{data.title}</Text>
-                    <Text className="text-gray-400 font-normal pt-1 text-lg">{data.short_description}</Text>
+                    <Text className="text-2xl font-bold text-sky-800">{data.name}</Text>
+                    <Text className="text-gray-400 font-normal pt-1 text-lg">{data.description}</Text>
                     <Text className="text-gray-400 font-normal pt-2 text-lg italic">Nguyên liệu: {data.ingredient}</Text>
     
                 </View>

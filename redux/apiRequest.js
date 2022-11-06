@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getAllProductFail, getAllProductStart, getAllProductSuccess } from './productSlice'
 import { loginFail, loginStart, loginSuccess, logOutFail, logOutStart, logOutSuccess } from './userSlice'
 
 const host = 'http://192.168.1.3:9000'
@@ -22,5 +23,15 @@ export const logoutUser = async(accessToken,user,dispatch)=>{
         dispatch(logOutSuccess())
     } catch (error) {
         dispatch(logOutFail())
+    }
+}
+
+export const getAllProduct = async (dispatch) =>{
+    dispatch(getAllProductStart())
+    try {
+        const res = await axios.get(`${host}/v2/product`);
+        dispatch(getAllProductSuccess(res.data));
+    } catch (error) {
+        dispatch(getAllProductFail())
     }
 }

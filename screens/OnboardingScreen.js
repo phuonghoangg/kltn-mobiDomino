@@ -17,6 +17,7 @@ const OnboardingScreen = () => {
 
   const user = useSelector((state)=>state.user?.login.currentUser)
   const loading = useSelector((state)=>state.user?.login.isFetching)
+  const fail = useSelector((state)=>state.user.login.error)
   const navigation = useNavigation();
   
   useLayoutEffect(() => {
@@ -32,6 +33,9 @@ const OnboardingScreen = () => {
       </View>
     );
   }
+  if(fail){
+    console.log("login that bai");
+  }
   return (
    <>
     {
@@ -46,7 +50,7 @@ const OnboardingScreen = () => {
           style={{ width: 450, height: 700, left: -39 }}
         />
         <TouchableOpacity
-          className=" bg-sky-600/30 h-14 w-80 absolute bottom-10 ml-11 rounded-xl flex-row justify-around "
+          className=" bg-sky-600/30 h-14 w-80 absolute bottom-20 ml-11 rounded-xl flex-row justify-around "
           onPress={()=>navigation.navigate('Login')}
        >
           <Text className="text-center pt-3 text-gray-400 text-xl font-norm italic">
