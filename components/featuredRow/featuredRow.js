@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { getAllProduct } from '../../redux/apiRequest'
+import {ArrowRightIcon} from 'react-native-heroicons/outline'
 // const dataProduct = [
 //   {
 //     id: 123,
@@ -47,7 +48,7 @@ const FeaturedRow = ({ id, title, description, featureCategory }) => {
     <View>
       <View className="flex-row mt-4 items-center justify-between px-4">
         <Text className="font-bold text-lg">{title}</Text>
-        {/* <ArrowRightIcon onPress={()=>{navigation.navigate('Menu')}} color="#00CCBB" /> */}
+        <ArrowRightIcon onPress={()=>{navigation.navigate('Menu')}} color="#00CCBB" />
       </View>
       <Text className="text-xs text-gray-500 px-4 font-normal">{description}</Text>
       <ScrollView

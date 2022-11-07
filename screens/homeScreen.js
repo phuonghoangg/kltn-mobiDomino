@@ -6,9 +6,9 @@ import Categories from '../components/category/categories';
 import FeaturedRow from '../components/featuredRow/featuredRow';
 import Slider from '../components/slider/Slider';
 const HomeScreen = () => {
-    const route = useRoute();
-    const { numberTable } = route.params
-    console.log("numberTable");
+    // const route = useRoute();
+    // const { numberTable } = route.params
+    // console.log("numberTable");
 
     const navigation = useNavigation();
     useLayoutEffect(() => {

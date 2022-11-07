@@ -10,7 +10,7 @@ const Stack = createNativeStackNavigator();
 const HomeTabNavigator = () => {
   return (
     <Stack.Navigator >
-        <Stack.Screen name='BookTable' component={BookTableScreen} />
+        {/* <Stack.Screen name='BookTable' component={BookTableScreen} /> */}
         <Stack.Screen name='HomeScreen' component={HomeScreen} />
         <Stack.Screen name='Register' component={RegisterScreen} />
         

@@ -1,41 +1,78 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addProductSelectId, removeProductSelectId } from "../redux/billSlice";
+import { addProductSelectId, removeProduct, removeProductSelectId } from "../redux/billSlice";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ChevronLeftIcon } from 'react-native-heroicons/outline'
+import { ChevronLeftIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
-import {Dropdown} from 'react-native-element-dropdown'
-
+import SelectList from "react-native-dropdown-select-list";
+import { useState } from "react";
+import { addBill } from "../redux/apiRequest";
 const CartScreen = () => {
-  const dataDropdown = [
-    {label:'item 1',value:'1'},
-    {label:'item 1',value:'1'},
-    {label:'item 1',value:'1'},
-    {label:'item 1',value:'1'},
-    {label:'item 1',value:'1'},
-    {label:'item 1',value:'1'},
+  const [select, setSelect] = useState("");
 
-  ]
+  const dataDropdown = [
+    { label: "item 1", value: "Bàn 1" },
+    { label: "item 2", value: "Bàn 2" },
+    { label: "item 3", value: "Bàn 3" },
+    { label: "item 4", value: "Bàn 4" },
+    { label: "item 5", value: "Bàn 5" },
+    { label: "item 6", value: "Bàn 6" },
+    { label: "item 7", value: "Bàn 7" },
+    { label: "item 8", value: "Bàn 8" },
+    { label: "item 9", value: "Bàn 9" },
+    { label: "item 10", value: "Bàn 10" },
+    { label: "item 11", value: "Bàn 11" },
+    { label: "item 12", value: "Bàn 12" },
+    { label: "item mua ve", value: "Mua về" },
+  ];
   const CartProduct = useSelector((state) => state.bill?.productCart);
   const bill = useSelector((state) => state.bill?.productSelectId);
+  const user = useSelector((state) => state.user.login.currentUser);
 
+  const accessToken = user.accessToken;
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const handlePOP = () => {
-    dispatch(removeProductSelectId());
-  };
+
 
   const handleBack = () => {
-    navigation.goBack()
-  }
+    navigation.goBack();
+  };
   // console.log(bill);
-  console.log(CartProduct.listProduct);
+  // console.log(CartProduct.listProduct);
+  // console.log(select);
+
+  // xu li dat hang
+  const handlePress = () => {
+    const priceBill = CartProduct.price;
+
+    const newBill = {
+      priceBill: priceBill,
+      numberTable: select,
+      products: bill,
+      user: user._id,
+    };
+    // console.log(newBill);
+    addBill(accessToken, newBill, dispatch);
+  };
+  const handleRemoveProduct = (index,item) => {
+      const position = index
+      const price = item.priceProduct
+
+      const payload = {
+        position,
+        price
+      }
+      dispatch(removeProduct(payload))
+  };
   return (
     <SafeAreaView className="flex-1 bg-gray-50">
       <View className=" flex-1 mb-2">
         <View className="flex-row justify-center relative h-11 border-b border-gray-300">
-          <TouchableOpacity onPress={() => handleBack()} className="absolute left-4 top-1">
+          <TouchableOpacity
+            onPress={() => handleBack()}
+            className="absolute left-4 top-1"
+          >
             <ChevronLeftIcon color="#004666" size={26} />
           </TouchableOpacity>
           <Text className="text-xl">Giỏ hàng</Text>
@@ -43,41 +80,68 @@ const CartScreen = () => {
         <ScrollView className="flex-1">
           <View className="justify-between flex-row border-b py-2 border-gray-300">
             <Text className=" px-2 text-xl font-bold ">Danh sách đơn hàng</Text>
-            <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
-              <Text className=" px-2 text-lg text-blue-900 font-normal">+ Thêm món</Text>
+            <TouchableOpacity onPress={() => navigation.navigate("Menu")}>
+              <Text className=" px-2 text-lg text-blue-900 font-normal">
+                + Thêm món
+              </Text>
             </TouchableOpacity>
           </View>
 
-            {
-              CartProduct.listProduct.map((item,index)=>{
-                return <View key={index} className="flex-row justify-between px-2 border-b py-2 border-gray-300">
+          {CartProduct.listProduct.map((item, index) => {
+            return (
+              <View
+                key={index}
+                className="flex-row justify-between px-2 border-b py-2 border-gray-300 "
+              >
                 <Text className="text-lg font-bold text-sky-800">x1</Text>
-                <View className="ml-4 flex-1 pr-3">
-                  <Text className="text-lg font-bold">{item.dataProduct.name}</Text>
-                 {item.chooseSizeType? <Text >Vừa, Đế giòn xốp</Text>:<></>}
-                </View>
-                <Text className="text-lg font-bold">29,000 đ</Text>
-  
-              </View>
-              })
-            }
-            
-          <View>
 
-          </View>
-        </ScrollView >
-        {/* <View className="px-2 justify-between flex-row">
-          <Text className="text-lg">Chọn bàn</Text>
-          <Dropdown data={dataDropdown} labelField="label" valueField="value"/>
-        </View> */}
+                <View className="ml-4 flex-1 pr-3 relative">
+                  <TouchableOpacity
+                    onPress={() => {
+                      handleRemoveProduct(index,item);
+                    }}
+                    className="absolute right-0 pl-2"
+                  >
+                    <Text>{index}</Text>
+                  </TouchableOpacity>
+
+                  <Text className="text-lg font-bold">
+                    {item.dataProduct.name}
+                  </Text>
+                  {item.chooseSizeType ? (
+                    <Text>{item.chooseSizeType}</Text>
+                  ) : (
+                    <></>
+                  )}
+                </View>
+                <Text className="text-lg font-bold text-red-700 w-24 text-right">
+                  {item.priceProduct} đ
+                </Text>
+              </View>
+            );
+          })}
+
+          <View></View>
+        </ScrollView>
+        <View className="px-2 justify-between flex-row border-b border-gray-300 py-2 bg-white">
+          <Text className="text-lg pt-2">Chọn bàn</Text>
+          <SelectList
+            data={dataDropdown}
+            setSelected={setSelect}
+            placeholder="Chọn số bàn của bạn"
+            maxHeight={100}
+          />
+        </View>
       </View>
 
       {/* Bottom thanh toán */}
       <View className="w-full h-44 bg-white">
         <View className="h-20 px-2">
           <View className="flex-row items-center justify-between">
-            <Text className="text-base font-normal">Tổng</Text>
-            <Text className="text-base font-normal">300,000 đ</Text>
+            <Text className="text-base font-normal text-red-700">Tổng</Text>
+            <Text className="text-base font-normal text-red-700">
+              {CartProduct.price} đ
+            </Text>
           </View>
           <View className="flex-row items-center justify-between">
             <Text className="text-base font-normal">Giảm thành viên</Text>
@@ -92,11 +156,22 @@ const CartScreen = () => {
           <View className="items-center">
             <View className="flex-row justify-between w-11/12 items-center pb-2 pt-1">
               <Text className="font-normal text-base">Giá đã bao gồm VAT</Text>
-              <Text className="font-bold text-base">Thanh toán: 300,000đ</Text>
+              <Text className="font-bold text-base">
+                Thanh toán: {CartProduct.price} đ
+              </Text>
             </View>
           </View>
           <View className="items-center">
-            <TouchableOpacity className="w-11/12 h-12 bg-sky-700 justify-center items-center rounded-md">
+            <TouchableOpacity
+              onPress={
+                select
+                  ? () => handlePress()
+                  : () => {
+                      console.log("chon ban an");
+                    }
+              }
+              className="w-11/12 h-12 bg-sky-700 justify-center items-center rounded-md"
+            >
               <Text className="text-white text-lg font-semibold">
                 Thanh toán
               </Text>
