@@ -1,27 +1,75 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addProductSelectId, removeProductSelectId } from "../redux/billSlice";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { ChevronLeftIcon } from 'react-native-heroicons/outline'
+import { useNavigation } from "@react-navigation/native";
+import {Dropdown} from 'react-native-element-dropdown'
 
 const CartScreen = () => {
+  const dataDropdown = [
+    {label:'item 1',value:'1'},
+    {label:'item 1',value:'1'},
+    {label:'item 1',value:'1'},
+    {label:'item 1',value:'1'},
+    {label:'item 1',value:'1'},
+    {label:'item 1',value:'1'},
+
+  ]
   const CartProduct = useSelector((state) => state.bill?.productCart);
   const bill = useSelector((state) => state.bill?.productSelectId);
 
   const dispatch = useDispatch();
-
+  const navigation = useNavigation();
   const handlePOP = () => {
     dispatch(removeProductSelectId());
   };
+
+  const handleBack = () => {
+    navigation.goBack()
+  }
   // console.log(bill);
-  // console.log(CartProduct);
+  console.log(CartProduct.listProduct);
   return (
     <SafeAreaView className="flex-1 bg-gray-50">
-      <View className=" flex-1">
-        <View className="flex-row justify-center relative">
-          <Text className="absolute left-0 text-xl">btnleft</Text>
+      <View className=" flex-1 mb-2">
+        <View className="flex-row justify-center relative h-11 border-b border-gray-300">
+          <TouchableOpacity onPress={() => handleBack()} className="absolute left-4 top-1">
+            <ChevronLeftIcon color="#004666" size={26} />
+          </TouchableOpacity>
           <Text className="text-xl">Giỏ hàng</Text>
         </View>
+        <ScrollView className="flex-1">
+          <View className="justify-between flex-row border-b py-2 border-gray-300">
+            <Text className=" px-2 text-xl font-bold ">Danh sách đơn hàng</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
+              <Text className=" px-2 text-lg text-blue-900 font-normal">+ Thêm món</Text>
+            </TouchableOpacity>
+          </View>
+
+            {
+              CartProduct.listProduct.map((item,index)=>{
+                return <View key={index} className="flex-row justify-between px-2 border-b py-2 border-gray-300">
+                <Text className="text-lg font-bold text-sky-800">x1</Text>
+                <View className="ml-4 flex-1 pr-3">
+                  <Text className="text-lg font-bold">{item.dataProduct.name}</Text>
+                 {item.chooseSizeType? <Text >Vừa, Đế giòn xốp</Text>:<></>}
+                </View>
+                <Text className="text-lg font-bold">29,000 đ</Text>
+  
+              </View>
+              })
+            }
+            
+          <View>
+
+          </View>
+        </ScrollView >
+        {/* <View className="px-2 justify-between flex-row">
+          <Text className="text-lg">Chọn bàn</Text>
+          <Dropdown data={dataDropdown} labelField="label" valueField="value"/>
+        </View> */}
       </View>
 
       {/* Bottom thanh toán */}

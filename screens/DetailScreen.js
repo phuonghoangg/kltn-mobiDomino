@@ -50,7 +50,7 @@ const DetailScreen = () => {
                                 <RadioButton
                                     value="1"
                                     status={checked === '1' ? 'checked' : 'unchecked'}
-                                    onPress={() => { setChecked('1'); setPriceProduct(149000);setChooseSizeType('Đế Giòn Xốp') }}
+                                    onPress={() => { setChecked('1'); setPriceProduct(149000);setChooseSizeType('Nhỏ, Đế Giòn Xốp') }}
                                 />
                                 <Text className="pt-1 text-lg ">Đế Giòn Xốp</Text>
                             </View>
@@ -65,7 +65,7 @@ const DetailScreen = () => {
                                 <RadioButton
                                     value="2"
                                     status={checked === '2' ? 'checked' : 'unchecked'}
-                                    onPress={() => { setChecked('2'); setPriceProduct(149000);setChooseSizeType('Đế Mỏng Giòn')  }}
+                                    onPress={() => { setChecked('2'); setPriceProduct(149000);setChooseSizeType('Nhỏ, Đế Mỏng Giòn')  }}
                                 />
                                 <Text className="pt-1 text-lg ">Đế Mỏng Giòn</Text>
                             </View>
@@ -80,7 +80,7 @@ const DetailScreen = () => {
                                 <RadioButton
                                     value="3"
                                     status={checked === '3' ? 'checked' : 'unchecked'}
-                                    onPress={() => { setChecked('3'); setPriceProduct(149000) ;setChooseSizeType('Đế Kéo Tay Truyền Thống')  }}
+                                    onPress={() => { setChecked('3'); setPriceProduct(149000) ;setChooseSizeType('Nhỏ, Đế Kéo Tay Truyền Thống')  }}
                                 />
                                 <Text className="pt-1 text-lg ">Đế Kéo Tay Truyền Thống</Text>
                             </View>
@@ -99,7 +99,7 @@ const DetailScreen = () => {
                                 <RadioButton
                                     value="4"
                                     status={checked === '4' ? 'checked' : 'unchecked'}
-                                    onPress={() => { setChecked('4'); setPriceProduct(239000);setChooseSizeType('Đế Giòn Xốp')  }}
+                                    onPress={() => { setChecked('4'); setPriceProduct(239000);setChooseSizeType('Vừa, Đế Giòn Xốp')  }}
                                 />
                                 <Text className="pt-1 text-lg ">Đế Giòn Xốp</Text>
                             </View>
@@ -114,7 +114,7 @@ const DetailScreen = () => {
                                 <RadioButton
                                     value="5"
                                     status={checked === '5' ? 'checked' : 'unchecked'}
-                                    onPress={() => { setChecked('5'); setPriceProduct(239000);setChooseSizeType('Đế Mỏng Giòn')  }}
+                                    onPress={() => { setChecked('5'); setPriceProduct(239000);setChooseSizeType('Vừa, Đế Mỏng Giòn')  }}
                                 />
                                 <Text className="pt-1 text-lg ">Đế Mỏng Giòn</Text>
                             </View>
@@ -129,7 +129,7 @@ const DetailScreen = () => {
                                 <RadioButton
                                     value="6"
                                     status={checked === '6' ? 'checked' : 'unchecked'}
-                                    onPress={() => { setChecked('6'); setPriceProduct(239000);setChooseSizeType('Đế Kéo Tay Truyền Thống')  }}
+                                    onPress={() => { setChecked('6'); setPriceProduct(239000);setChooseSizeType('Vừa, Đế Kéo Tay Truyền Thống')  }}
                                 />
                                 <Text className="pt-1 text-lg ">Đế Kéo tay truyền thống</Text>
                             </View>
@@ -148,7 +148,7 @@ const DetailScreen = () => {
                                 <RadioButton
                                     value="7"
                                     status={checked === '7' ? 'checked' : 'unchecked'}
-                                    onPress={() => { setChecked('7'); setPriceProduct(299000);setChooseSizeType('Đế Giòn Xốp')  }}
+                                    onPress={() => { setChecked('7'); setPriceProduct(299000);setChooseSizeType('Lớn, Đế Giòn Xốp')  }}
                                 />
                                 <Text className="pt-1 text-lg ">Đế Giòn Xốp</Text>
                             </View>
@@ -163,7 +163,7 @@ const DetailScreen = () => {
                                 <RadioButton
                                     value="8"
                                     status={checked === '8' ? 'checked' : 'unchecked'}
-                                    onPress={() => { setChecked('8'); setPriceProduct(299000);setChooseSizeType('Đế Mỏng Giòn')  }}
+                                    onPress={() => { setChecked('8'); setPriceProduct(299000);setChooseSizeType('Lớn, Đế Mỏng Giòn')  }}
                                 />
                                 <Text className="pt-1 text-lg ">Đế Mỏng Giòn</Text>
                             </View>
@@ -178,7 +178,7 @@ const DetailScreen = () => {
                                 <RadioButton
                                     value="9"
                                     status={checked === '9' ? 'checked' : 'unchecked'}
-                                    onPress={() => { setChecked('9'); setPriceProduct(299000);setChooseSizeType('Đế Kéo Tay Truyền Thống')  }}
+                                    onPress={() => { setChecked('9'); setPriceProduct(299000);setChooseSizeType('Lớn, Đế Kéo Tay Truyền Thống')  }}
                                 />
                                 <Text className="pt-1 text-lg ">Đế Kéo tay truyền thống</Text>
                             </View>

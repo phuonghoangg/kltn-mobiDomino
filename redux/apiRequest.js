@@ -2,7 +2,8 @@ import axios from 'axios'
 import { getAllProductFail, getAllProductStart, getAllProductSuccess } from './productSlice'
 import { loginFail, loginStart, loginSuccess, logOutFail, logOutStart, logOutSuccess } from './userSlice'
 
-const host = 'http://192.168.1.3:9000'
+// const host = 'http://192.168.1.3:9000'
+const host  = 'http://192.168.100.48:9000'
 
 export const loginUser = async(user,dispatch) =>{
     dispatch(loginStart())
