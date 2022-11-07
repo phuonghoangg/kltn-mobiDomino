@@ -100,9 +100,9 @@ const CartScreen = () => {
                     onPress={() => {
                       handleRemoveProduct(index,item);
                     }}
-                    className="absolute right-0 pl-2"
+                    className="absolute right-0 pl-2 top-1"
                   >
-                    <Text>{index}</Text>
+                    <Text className="font-bold text-sm text-sky-800">Xóa</Text>
                   </TouchableOpacity>
 
                   <Text className="text-lg font-bold">
@@ -139,7 +139,7 @@ const CartScreen = () => {
         <View className="h-20 px-2">
           <View className="flex-row items-center justify-between">
             <Text className="text-base font-normal text-red-700">Tổng</Text>
-            <Text className="text-base font-normal text-red-700">
+            <Text className="text-base font-bold text-red-700">
               {CartProduct.price} đ
             </Text>
           </View>
