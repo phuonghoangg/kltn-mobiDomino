@@ -38,7 +38,7 @@ const CartScreen = () => {
   const handleBack = () => {
     navigation.goBack();
   };
-  // console.log(bill);
+  console.log(bill);
   // console.log(CartProduct.listProduct);
   // console.log(select);
 
@@ -61,9 +61,10 @@ const CartScreen = () => {
 
       const payload = {
         position,
-        price
+        price,
       }
       dispatch(removeProduct(payload))
+      dispatch(removeProductSelectId(payload))
   };
   return (
     <SafeAreaView className="flex-1 bg-gray-50">
@@ -102,7 +103,7 @@ const CartScreen = () => {
                     }}
                     className="absolute right-0 pl-2 top-1"
                   >
-                    <Text className="font-bold text-sm text-sky-800">Xóa</Text>
+                    <Text className="font-bold text-sm text-sky-800 px-2">Xóa</Text>
                   </TouchableOpacity>
 
                   <Text className="text-lg font-bold">

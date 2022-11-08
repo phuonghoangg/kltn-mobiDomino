@@ -56,14 +56,14 @@ const HomeScreen = () => {
                     featureCategory="featured"
                 /> */}
                 <View className="flex-row mt-4 items-center justify-between px-4 ">
-                    <Text className="font-bold text-xl ">Liên hệ với Dominoo's</Text>
+                    <Text className="font-bold text-xl text-sky-800">Liên hệ với Dominoo's</Text>
                 </View>
                 <TouchableOpacity onPress={() => { navigation.navigate('Cart') }} className=" flex-row mt-4 items-center justify-between mx-4 bg-white p-3"  >
-                    <Text className="text-green-600">Cần sự hỗ trợ ? </Text>
-                    <Text className="font-bold text-green-600">1900 1822</Text>
+                    <Text className="text-sky-800 font-normal">Cần sự hỗ trợ ? </Text>
+                    <Text className="font-bold text-sky-800">1900 1822</Text>
                 </TouchableOpacity>
                 <TouchableOpacity className=" flex-row mt-4 items-center justify-between mx-4 bg-white p-3"  >
-                    <Text className="text-green-600">Điều khoản & điều kiện </Text>
+                    <Text className="text-sky-800 font-normal">Điều khoản & điều kiện </Text>
 
                 </TouchableOpacity>
                 <Image source={{ uri: 'https://dominos.vn/img/credentials.png' }} />

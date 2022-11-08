@@ -31,9 +31,9 @@ const billSlice = createSlice({
     addProductSelectId:(state,action)=>{
         state.productSelectId.push(action.payload.product);
     },
-    removeProductSelectId: (state) => {
-        state.productSelectId.pop();
-      },
+    removeProductSelectId: (state,action) => {
+        state.productSelectId.splice(action.payload.position,1)
+    },
     
     addBillStart:(state)=>{
       state.billProduct.isFetching = true

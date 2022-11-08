@@ -27,7 +27,7 @@ const AccountScreen = () => {
       <View>
         <Text className="text-center text-gray-900 py-5 text-3xl font-bold">Thông tin cá nhân 👌</Text>
       </View>
-      <TouchableOpacity style={{ elevation: 4, borderRadius: 5 }} className="mb-4 mx-3 bg-white flex justify-center h-16">
+      <TouchableOpacity onPress={()=>navigation.navigate('Receipt')} style={{ elevation: 4, borderRadius: 5 }} className="mb-4 mx-3 bg-white flex justify-center h-16">
         <Text className="pl-4 text-xl ">Xem hóa đơn</Text>
       </TouchableOpacity>
 

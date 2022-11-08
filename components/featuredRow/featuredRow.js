@@ -47,8 +47,8 @@ const FeaturedRow = ({ id, title, description, featureCategory }) => {
   return (
     <View>
       <View className="flex-row mt-4 items-center justify-between px-4">
-        <Text className="font-bold text-lg">{title}</Text>
-        <ArrowRightIcon onPress={()=>{navigation.navigate('Menu')}} color="#00CCBB" />
+        <Text className="font-bold text-lg text-sky-800">{title}</Text>
+        <ArrowRightIcon onPress={()=>{navigation.navigate('Menu')}} color="#2596be" />
       </View>
       <Text className="text-xs text-gray-500 px-4 font-normal">{description}</Text>
       <ScrollView
@@ -57,7 +57,7 @@ const FeaturedRow = ({ id, title, description, featureCategory }) => {
           paddingHorizontal: 15,
         }}
         showsHorizontalScrollIndicator={false}
-        className="pt-4"
+        className="pt-2"
       >
        {
         dataProduct?.map((data,index)=>{

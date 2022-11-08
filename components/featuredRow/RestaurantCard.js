@@ -13,7 +13,7 @@ const RestaurantCard = ({data}) => {
             className="h-36 w-50 rounded-t-lg"
         />
         <View className="px-3 pb-4">
-            <Text style={{width:150}} className="h-16 font-bold text-lg pt-2">{data?.name}</Text>
+            <Text style={{width:150}} className="h-16 font-bold text-lg pt-2 text-sky-800">{data?.name}</Text>
             <View  className="flex-row items-center space-x-1 ">
                <Text className="text-xs w-40 h-8 text-gray-500 font-normal ">
                {data?.description}
@@ -21,7 +21,7 @@ const RestaurantCard = ({data}) => {
             </View>
             <View className="flex-row items-center space-x-1">
                 {/* <MapPinIcon color="gray" opacity={0.4} size={22} /> */}
-                <Text className="text-xl text-red-500 font-bold">{data?.price}</Text>
+                <Text className="text-xl text-red-500 font-bold ">{data?.price} đ</Text>
             </View>
         </View>
     </TouchableOpacity>
