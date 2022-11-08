@@ -9,7 +9,7 @@ const billSlice = createSlice({
     },
     productSelectId:[],
     billProduct: {
-      currentBill: null,
+      allBill: null,
       isFetching: false,
       error: false,
       success:false,
@@ -46,9 +46,20 @@ const billSlice = createSlice({
       state.billProduct.success=false
       state.billProduct.isFetching = false
       state.billProduct.error = true
-    }
+    },
+    getAllBillStart:(state)=>{
+      state.billProduct.isFetching=true
+    },
+    getAllBillSuccess:(state,action)=>{
+      state.billProduct.isFetching=false
+      state.billProduct.allBill = action.payload
+    },
+    getAllBillFail:(state)=>{
+      state.billProduct.error=true
+    },
+
   },
 });
 
-export const { addProduct,resetProduct, removeProduct,addProductSelectId,removeProductSelectId,addBillFail,addBillStart,addBillSuccess } = billSlice.actions;
+export const { addProduct,resetProduct, removeProduct,addProductSelectId,removeProductSelectId,addBillFail,addBillStart,addBillSuccess,getAllBillFail,getAllBillStart,getAllBillSuccess } = billSlice.actions;
 export default billSlice.reducer;

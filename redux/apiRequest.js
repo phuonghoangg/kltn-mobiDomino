@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { addBillStart, addBillSuccess, resetProduct } from './billSlice'
+import { addBillStart, addBillSuccess, getAllBillFail, getAllBillStart, getAllBillSuccess, resetProduct } from './billSlice'
 import { getAllProductFail, getAllProductStart, getAllProductSuccess } from './productSlice'
 import { loginFail, loginStart, loginSuccess, logOutFail, logOutStart, logOutSuccess } from './userSlice'
 
@@ -48,5 +48,17 @@ export const addBill = async (accessToken,bill,dispatch) =>{
         dispatch(resetProduct())
     } catch (error) {
         dispatch(addBillFail())
+    }
+}
+
+export const getAllBill = async (accessToken,dispatch,user)=>{
+    dispatch(getAllBillStart())
+    try {
+        const res = await axios.get(`${host}/v3/bill`,{
+            headers:{token: `Bearer ${accessToken}`}
+        })
+        dispatch(getAllBillSuccess(res.data))
+    } catch (error) {
+        dispatch(getAllBillFail())
     }
 }

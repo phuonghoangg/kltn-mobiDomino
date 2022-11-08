@@ -38,11 +38,16 @@ const CartScreen = () => {
   const handleBack = () => {
     navigation.goBack();
   };
-  console.log(bill);
+  // console.log(bill);
   // console.log(CartProduct.listProduct);
   // console.log(select);
 
   // xu li dat hang
+  let description = ''
+  CartProduct.listProduct.map(item=>{
+    return description = description +" " + item.dataProduct.name +" " + item.chooseSizeType + "; " 
+  })
+  // console.log("description: ",description);
   const handlePress = () => {
     const priceBill = CartProduct.price;
 
@@ -51,6 +56,7 @@ const CartScreen = () => {
       numberTable: select,
       products: bill,
       user: user._id,
+      description: description
     };
     // console.log(newBill);
     addBill(accessToken, newBill, dispatch);
