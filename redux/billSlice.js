@@ -14,8 +14,24 @@ const billSlice = createSlice({
       error: false,
       success:false,
     },
+    updateStatusBill: {
+      isFetching:false,
+      error:false,
+      success: false,
+    }
   },
   reducers: {
+    updateStatusStart:(state)=>{
+      state.updateStatusBill.isFetching = true;
+    },
+    updateStatusSuccess:(state)=>{
+      state.updateStatusBill.isFetching = false;
+      state.updateStatusBill.success = true;
+    },
+    updateStatusFail:(state)=>{
+      state.updateStatusBill.isFetching = true;
+      state.updateStatusBill.error = false;
+    },
     addProduct: (state, action) => {
       state.productCart.listProduct.push(action.payload.product);
       state.productCart.price = state.productCart.price +  action.payload.price;
@@ -61,5 +77,5 @@ const billSlice = createSlice({
   },
 });
 
-export const { addProduct,resetProduct, removeProduct,addProductSelectId,removeProductSelectId,addBillFail,addBillStart,addBillSuccess,getAllBillFail,getAllBillStart,getAllBillSuccess } = billSlice.actions;
+export const {updateStatusFail,updateStatusStart,updateStatusSuccess, addProduct,resetProduct, removeProduct,addProductSelectId,removeProductSelectId,addBillFail,addBillStart,addBillSuccess,getAllBillFail,getAllBillStart,getAllBillSuccess } = billSlice.actions;
 export default billSlice.reducer;
