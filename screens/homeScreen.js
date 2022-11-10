@@ -5,7 +5,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Categories from '../components/category/categories';
 import FeaturedRow from '../components/featuredRow/featuredRow';
 import Slider from '../components/slider/Slider';
+import { useSelector } from 'react-redux';
 const HomeScreen = () => {
+    const user = useSelector((state)=>state.user.login?.currentUser)
     // const route = useRoute();
     // const { numberTable } = route.params
     // console.log("numberTable");
@@ -21,7 +23,7 @@ const HomeScreen = () => {
             {/*header */}
             <View className="flex-row pb-3 items-center  justify-between mx-4">
                 <Image style={{ width: 200, height: 50 }} source={{ uri: 'https://brademar.com/wp-content/uploads/2022/05/Dominos-Pizza-Logo-PNG-2012-%E2%80%93-Now-2.png' }} />
-                <Text> Phuong Hoanggggg</Text>
+                <Text>{user.username}</Text>
                 {/* <View className="flex-row items-center">
                     <Text className="font-bold text-xl ">Pizza Domilo!</Text>
                 </View> */}
