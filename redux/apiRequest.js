@@ -4,7 +4,7 @@ import { getAllProductFail, getAllProductStart, getAllProductSuccess } from './p
 import { loginFail, loginStart, loginSuccess, logOutFail, logOutStart, logOutSuccess } from './userSlice'
 
 // o nha 
-// const host = 'http://192.168.1.3:9000'
+const host = 'http://192.168.1.3:9000'
 
 // wifi cong ty 
 // const host  = 'http://192.168.100.48:9000'
@@ -13,7 +13,7 @@ import { loginFail, loginStart, loginSuccess, logOutFail, logOutStart, logOutSuc
 // const host = 'http://192.168.184.196:9000'
 
 // wifi huy 
-const host = 'http://192.168.66.196:9000'
+// const host = 'http://192.168.66.196:9000'
 
 export const loginUser = async(user,dispatch) =>{
     dispatch(loginStart())

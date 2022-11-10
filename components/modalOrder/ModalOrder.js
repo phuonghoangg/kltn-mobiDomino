@@ -24,17 +24,19 @@ const ModalOrder = ({ visible, setVisible, children, item }) => {
             user: user._id
         }
         acceptChefBill(accessToken,dispatch,payload)
+        setVisible(false)
     }
     const handlePressDishOut = () => {
         const payload = {
             id:item._id
         }
         acceptDishout(accessToken,dispatch,payload)
+        setVisible(false)
     }
     const handlePressFail = () =>{
        console.log("k co quyen");
     }
-    console.log(user.role);
+    // console.log(user.role);
     return (
         <Modal transparent visible={visible} animationType={'fade'}>
             <View style={{ backgroundColor: "#00000080" }} className="flex-1  justify-end items-center bg-slate-400 ">
@@ -53,7 +55,7 @@ const ModalOrder = ({ visible, setVisible, children, item }) => {
                             {item?.isActiveBill == true ? <CheckCircleIcon color={"#005028"} size={30} /> : <></>}
                         </View>
                         <View className="flex-row items-center">
-                            <TouchableOpacity className="py-2 text-xl font-semibold" onPress={user.role ==="chef" ? () => handlePressChefAccept() : ()=>handlePressFail()}>
+                            <TouchableOpacity className="py-2 text-xl font-semibold" onPress={user.role ==="customer" ? () => handlePressChefAccept() : ()=>handlePressFail()}>
                                 <Text className="text-xl">Hoàn thành món ăn</Text>
                             </TouchableOpacity>
                             {item?.chefActive ? <CheckCircleIcon color={"#005028"} size={30} /> : <></>}

@@ -10,7 +10,7 @@ const DetailScreen = () => {
     const user = useSelector((state)=>state.user.login?.currentUser)
     const [checked, setChecked] = useState('');
     const [priceProduct, setPriceProduct] = useState(0)
-    const [chooseSizeType,setChooseSizeType] = useState('')
+    const [chooseSizeType,setChooseSizeType] = useState(' ')
     const route = useRoute();
     const { data } = route.params
 
@@ -21,7 +21,8 @@ const DetailScreen = () => {
     }
     const dataDetailOrder = {
         priceProduct : data.priceC,
-        dataProduct:data
+        dataProduct:data,
+        chooseSizeType,
     }
     return (
        <>

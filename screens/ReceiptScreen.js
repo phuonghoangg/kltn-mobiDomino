@@ -18,7 +18,7 @@ const ReceiptScreen = () => {
   const accessToken = user.accessToken;
   useEffect(() => {
     getAllBill(accessToken, dispatch);
-  }, []);
+  }, [visible]);
 
   const handlePress = (item) => {
     setVisible(true)
@@ -39,7 +39,9 @@ const ReceiptScreen = () => {
            <View className="flex-row justify-between">
               <Text className="w-20">HĐ {index + 1}</Text>
               <Text className="w-20">{item.priceBill}</Text>
-              <Text className="w-20">{item.status}</Text>
+              {
+                item.status === "DON_MOI" ? <Text className="w-20 text-center">chờ xác nhận</Text> : item.status ==="DON_DA_XAC_NHAN" ? <Text className="w-20 text-center">Chờ bếp ra món</Text> : item.status ==="BEP_XAC_NHAN" ? <Text className="w-20 text-center">Chờ nhân viên nhận món</Text>: <Text className="w-20 text-center">Đã ra món</Text>
+              }
 
            </View>
           </TouchableOpacity >
