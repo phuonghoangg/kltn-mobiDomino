@@ -55,7 +55,7 @@ const ModalOrder = ({ visible, setVisible, children, item }) => {
                             {item?.isActiveBill == true ? <CheckCircleIcon color={"#005028"} size={30} /> : <></>}
                         </View>
                         <View className="flex-row items-center">
-                            <TouchableOpacity className="py-2 text-xl font-semibold" onPress={user.role ==="customer" ? () => handlePressChefAccept() : ()=>handlePressFail()}>
+                            <TouchableOpacity className="py-2 text-xl font-semibold" onPress={user.role ==="chef" ? () => handlePressChefAccept() : ()=>handlePressFail()}>
                                 <Text className="text-xl">Hoàn thành món ăn</Text>
                             </TouchableOpacity>
                             {item?.chefActive ? <CheckCircleIcon color={"#005028"} size={30} /> : <></>}

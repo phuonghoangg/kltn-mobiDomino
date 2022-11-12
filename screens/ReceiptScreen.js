@@ -28,9 +28,9 @@ const ReceiptScreen = () => {
     <View className="bg-white">
       <ModalOrder visible={visible} setVisible={setVisible} item={item}/>
       <View className="flex-row justify-between px-2">
-              <Text>Hóa đơn</Text>
-              <Text>Giá</Text>
-              <Text>Trạng thái</Text>
+              <Text className="w-20">Hóa đơn</Text>
+              <Text className="w-20">Giá</Text>
+              <Text className="w-20">Trạng thái</Text>
            </View>
 
       {
@@ -38,7 +38,7 @@ const ReceiptScreen = () => {
           return <TouchableOpacity className="py-2 px-2" onPress={() => { handlePress(item) }} key={index}>
            <View className="flex-row justify-between">
               <Text className="w-20">HĐ {index + 1}</Text>
-              <Text className="w-20">{item.priceBill}</Text>
+              <Text className="w-20 bg-red">{item.priceBill}</Text>
               {
                 item.status === "DON_MOI" ? <Text className="w-20 text-center">chờ xác nhận</Text> : item.status ==="DON_DA_XAC_NHAN" ? <Text className="w-20 text-center">Chờ bếp ra món</Text> : item.status ==="BEP_XAC_NHAN" ? <Text className="w-20 text-center">Chờ nhân viên nhận món</Text>: <Text className="w-20 text-center">Đã ra món</Text>
               }
