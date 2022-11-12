@@ -1,10 +1,10 @@
 import axios from 'axios'
-import { addBillStart, addBillSuccess, getAllBillFail, getAllBillStart, getAllBillSuccess, resetProduct, updateStatusFail, updateStatusStart, updateStatusSuccess } from './billSlice'
+import { addBillStart, addBillSuccess, getAllBillFail, getAllBillStart, getAllBillSuccess, GetBillUserFail, GetBillUserStart, GetBillUserSuccess, resetProduct, updateStatusFail, updateStatusStart, updateStatusSuccess } from './billSlice'
 import { getAllProductFail, getAllProductStart, getAllProductSuccess } from './productSlice'
 import { loginFail, loginStart, loginSuccess, logOutFail, logOutStart, logOutSuccess, registerFail, registerStart, registerSuccess } from './userSlice'
 
 // o nha 
-// const host = 'http://192.168.1.3:9000'
+const host = 'http://192.168.1.3:9000'
 
 // wifi cong ty 
 // const host  = 'http://192.168.100.48:9000'
@@ -13,7 +13,7 @@ import { loginFail, loginStart, loginSuccess, logOutFail, logOutStart, logOutSuc
 // const host = 'http://192.168.184.196:9000'
 
 // wifi huy 
-const host = 'http://192.168.123.62:9000'
+// const host = 'http://192.168.123.62:9000'
 
 export const loginUser = async(user,dispatch) =>{
     dispatch(loginStart())
@@ -79,6 +79,19 @@ export const getAllBill = async (accessToken,dispatch,user)=>{
         dispatch(getAllBillSuccess(res.data))
     } catch (error) {
         dispatch(getAllBillFail())
+    }
+}
+
+
+export const getAllBillWithUser = async (accessToken,dispatch,userId)=>{
+    dispatch(GetBillUserStart())
+    try {
+        const res = await axios.get(`${host}/v3/bill/${userId}`,{
+            headers:{token: `Bearer ${accessToken}`}
+        })
+        dispatch(GetBillUserSuccess(res.data))
+    } catch (error) {
+        dispatch(GetBillUserFail())
     }
 }
 

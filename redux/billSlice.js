@@ -18,9 +18,24 @@ const billSlice = createSlice({
       isFetching:false,
       error:false,
       success: false,
+    },
+    billUser: {
+      isFetching:false,
+      currentUser:null,
+      error:false
     }
   },
   reducers: {
+    GetBillUserStart:(state)=>{
+      state.billUser.isFetching = true;
+    },
+    GetBillUserSuccess:(state,action)=>{
+      state.billUser.isFetching = false;
+      state.billUser.currentUser = action.payload;
+    },
+    GetBillUserFail:(state)=>{
+      state.billUser.error = true;
+    },
     updateStatusStart:(state)=>{
       state.updateStatusBill.isFetching = true;
     },
@@ -29,8 +44,8 @@ const billSlice = createSlice({
       state.updateStatusBill.success = true;
     },
     updateStatusFail:(state)=>{
-      state.updateStatusBill.isFetching = true;
-      state.updateStatusBill.error = false;
+      state.updateStatusBill.isFetching = false;
+      state.updateStatusBill.error = true;
     },
     addProduct: (state, action) => {
       state.productCart.listProduct.push(action.payload.product);
@@ -77,5 +92,5 @@ const billSlice = createSlice({
   },
 });
 
-export const {updateStatusFail,updateStatusStart,updateStatusSuccess, addProduct,resetProduct, removeProduct,addProductSelectId,removeProductSelectId,addBillFail,addBillStart,addBillSuccess,getAllBillFail,getAllBillStart,getAllBillSuccess } = billSlice.actions;
+export const {GetBillUserFail,GetBillUserStart,GetBillUserSuccess,updateStatusFail,updateStatusStart,updateStatusSuccess, addProduct,resetProduct, removeProduct,addProductSelectId,removeProductSelectId,addBillFail,addBillStart,addBillSuccess,getAllBillFail,getAllBillStart,getAllBillSuccess } = billSlice.actions;
 export default billSlice.reducer;

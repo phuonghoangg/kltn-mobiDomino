@@ -1,52 +1,44 @@
-import { View, Text, TouchableOpacity, Button, ScrollView } from "react-native";
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getAllBill } from "../redux/apiRequest";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { useState } from "react";
-import ModalOrder from "../components/modalOrder/ModalOrder";
-import Modal from "react-native-modal";
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { getAllBillWithUser } from '../redux/apiRequest'
 
-const ReceiptScreen = () => {
-  const [visible, setVisible] = useState(false);
-  const [item, setItem] = useState();
+const OrderPlaced = () => {
+    const user = useSelector((state)=>state.user.login.currentUser)
+    const allBill = useSelector((state)=>state.bill.billUser?.currentUser)
+    console.log(allBill);
+    const dispatch = useDispatch()
+    useEffect(()=>{
+        getAllBillWithUser(user.accessToken,dispatch,user._id)
+    },[])
 
-  const dispatch = useDispatch();
-  const bill = useSelector((state) => state.bill.billProduct?.allBill);
-  const user = useSelector((state) => state.user.login.currentUser);
-  const accessToken = user.accessToken;
-  useEffect(() => {
-    getAllBill(accessToken, dispatch);
-  }, [visible]);
+    const handlePress = () =>{
 
-  const handlePress = (item) => {
-    setVisible(true);
-    setItem(item);
-  };
+    }
   return (
     <View className="bg-white">
-      <ModalOrder visible={visible} setVisible={setVisible} item={item} />
-      <View className="flex-row justify-between mx-2 border-b border-gray-300">
-        <View>
-          <Text className="w-20 text-lg font-bold text-sky-800">Hóa đơn</Text>
-        </View>
-        <View>
-          <Text className="w-20 text-lg font-bold text-sky-800">Tên</Text>
-        </View>
-        <View className="w-20 items-end">
-          <Text className=" text-lg font-bold text-sky-800 ">Giá</Text>
-        </View>
-        <View>
-          <Text className="w-25 text-lg font-bold text-sky-800">
-            Trạng thái
-          </Text>
-        </View>
+    {/* <ModalOrder visible={visible} setVisible={setVisible} item={item} /> */}
+    <View className="flex-row justify-between mx-2 border-b border-gray-300">
+      <View>
+        <Text className="w-20 text-lg font-bold text-sky-800">Hóa đơn</Text>
       </View>
+      <View>
+        <Text className="w-20 text-lg font-bold text-sky-800">Tên</Text>
+      </View>
+      <View className="w-20 items-end">
+        <Text className=" text-lg font-bold text-sky-800 ">Giá</Text>
+      </View>
+      <View>
+        <Text className="w-25 text-lg font-bold text-sky-800">
+          Trạng thái
+        </Text>
+      </View>
+    </View>
 
-      <ScrollView>
-        {bill?.map((item, index) => {
-          let nameHD = item._id.slice(20,24)
+    <ScrollView>
+        {allBill?.bills.map((item, index) => {
+             let nameHD = item._id.slice(20,24)
           return (
             <TouchableOpacity
               className="py-2 mx-2 border-b border-gray-300"
@@ -63,7 +55,7 @@ const ReceiptScreen = () => {
                 </View>
                 <View>
                   <Text className="w-20 text-base font-normal">
-                    {item.user.username}
+                    {allBill.username}
                   </Text>
                 </View>
                 <View className="w-20  items-end ">
@@ -95,8 +87,9 @@ const ReceiptScreen = () => {
           );
         })}
       </ScrollView>
-    </View>
-  );
-};
+    
+  </View>
+  )
+}
 
-export default ReceiptScreen;
+export default OrderPlaced

@@ -60,6 +60,7 @@ const CartScreen = () => {
     };
     // console.log(newBill);
     addBill(accessToken, newBill, dispatch);
+    navigation.navigate('Home')
   };
   const handleRemoveProduct = (index,item) => {
       const position = index

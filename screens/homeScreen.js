@@ -42,21 +42,7 @@ const HomeScreen = () => {
                     description="các món ăn có trong nhà hàng"
                     featureCategory="featured"
                 />
-                {/* Tasty Disount */}
-                {/* 
-                <FeaturedRow
-                    id="1234"
-                    title="Featured"
-                    description="Paid placements from our partners"
-                    featureCategory="featured"
-                /> */}
-                {/* Offers near you */}
-                {/* <FeaturedRow
-                    id="12345"
-                    title="Featured"
-                    description="Paid placements from our partners"
-                    featureCategory="featured"
-                /> */}
+
                 <View className="flex-row mt-4 items-center justify-between px-4 ">
                     <Text className="font-bold text-xl text-sky-800">Liên hệ với Dominoo's</Text>
                 </View>

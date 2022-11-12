@@ -48,19 +48,19 @@ const ModalOrder = ({ visible, setVisible, children, item }) => {
                                 <XCircleIcon color={"#A0AEC0"} size={30} />
                             </TouchableOpacity >
                         </View>
-                        <View className="flex-row items-center">
+                        <View className="flex-row items-center border-b border-gray-300">
                             <TouchableOpacity className="py-2 text-xl font-semibold" onPress={user.isAdmin || user.role ==="cashier" ? ()=>handlePressAcceptBill() :  ()=>handlePressFail()}>
                                 <Text className="text-xl pr-3">Xác nhận đơn hàng</Text>
                             </TouchableOpacity>
                             {item?.isActiveBill == true ? <CheckCircleIcon color={"#005028"} size={30} /> : <></>}
                         </View>
-                        <View className="flex-row items-center">
+                        <View className="flex-row items-center border-b border-gray-300">
                             <TouchableOpacity className="py-2 text-xl font-semibold" onPress={user.role ==="chef" ? () => handlePressChefAccept() : ()=>handlePressFail()}>
                                 <Text className="text-xl">Hoàn thành món ăn</Text>
                             </TouchableOpacity>
                             {item?.chefActive ? <CheckCircleIcon color={"#005028"} size={30} /> : <></>}
                         </View>
-                        <View className="flex-row items-center" >
+                        <View className="flex-row items-center border-b border-gray-300" >
                             <TouchableOpacity className="py-2 text-xl font-semibold" onPress={() => handlePressDishOut()}>
                                 <Text className="text-xl">Hoàn tất hóa đơn</Text>
                             </TouchableOpacity>
@@ -69,7 +69,7 @@ const ModalOrder = ({ visible, setVisible, children, item }) => {
                         </View>
                     </View>
                     <View>
-                        <Text className="text-2xl text-sky-800 font-bold">Chi Tiết Đơn Hàng</Text>
+                        <Text className="text-2xl text-sky-800 font-bold pt-5">Chi Tiết Đơn Hàng</Text>
                     </View>
                     <ScrollView>
                         <View className="flex-row">
@@ -82,7 +82,7 @@ const ModalOrder = ({ visible, setVisible, children, item }) => {
                                 }
                             </View>
                         </View>
-                        <Text className="text-xl">Chi tiết hóa đơn: {item?.description}</Text>
+                        <Text className="text-xl">Mô tả chi tiết: {item?.description}</Text>
                     </ScrollView>
                 </View>
             </View>
