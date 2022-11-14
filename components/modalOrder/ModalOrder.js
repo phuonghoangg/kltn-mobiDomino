@@ -2,12 +2,11 @@ import { View, Text, Modal, TouchableOpacity, ScrollView } from 'react-native'
 import React from 'react'
 import { CheckCircleIcon, CheckIcon, XCircleIcon } from 'react-native-heroicons/outline'
 import { useDispatch, useSelector } from 'react-redux'
-import { acceptBill, acceptChefBill, acceptDishout } from '../../redux/apiRequest'
+import { acceptBill, acceptChefBill, acceptDishout, rejectBill } from '../../redux/apiRequest'
 import { useNavigation } from '@react-navigation/native'
 const ModalOrder = ({ visible, setVisible, children, item }) => {
     const user = useSelector((state) => state.user.login?.currentUser)
     const accessToken = user.accessToken
-
     const dispatch = useDispatch()
 
     const handlePressAcceptBill = () => {
@@ -32,6 +31,15 @@ const ModalOrder = ({ visible, setVisible, children, item }) => {
         }
         acceptDishout(accessToken,dispatch,payload)
         setVisible(false)
+    }
+    const handlePressRejectBill =() =>{
+        const payload = {
+            id: item._id,
+            user: user._id
+        }
+        rejectBill(accessToken,dispatch,payload)
+        setVisible(false)
+
     }
     const handlePressFail = () =>{
        console.log("k co quyen");
@@ -60,11 +68,19 @@ const ModalOrder = ({ visible, setVisible, children, item }) => {
                             </TouchableOpacity>
                             {item?.chefActive ? <CheckCircleIcon color={"#005028"} size={30} /> : <></>}
                         </View>
-                        <View className="flex-row items-center border-b border-gray-300" >
-                            <TouchableOpacity className="py-2 text-xl font-semibold" onPress={() => handlePressDishOut()}>
+
+                        <View className="flex-row items-center border-b border-gray-300">
+                            <TouchableOpacity className="py-2 text-xl font-semibold" onPress={user.role ==="chef" ? () => handlePressDishOut() : ()=>handlePressFail()}>
                                 <Text className="text-xl">Hoàn tất hóa đơn</Text>
                             </TouchableOpacity>
-                            {item?.isDishOut == true ? <CheckCircleIcon color={"#005028"} size={30} /> : <></>}
+                            {user.isAdmin ==true || user.role ==="customer" ? <CheckCircleIcon color={"#005028"} size={30} /> : <></>}
+                        </View>
+
+                        <View className="flex-row items-center border-b border-gray-300" >
+                            <TouchableOpacity className="py-2 text-xl font-semibold" onPress={() => handlePressRejectBill()}>
+                                <Text className="text-xl">Hủy hóa đơn</Text>
+                            </TouchableOpacity>
+                            {item?.isRejectBill == true ? <CheckCircleIcon color={"#005028"} size={30} /> : <></>}
 
                         </View>
                     </View>

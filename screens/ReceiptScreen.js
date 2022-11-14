@@ -15,9 +15,8 @@ const ReceiptScreen = () => {
   const dispatch = useDispatch();
   const bill = useSelector((state) => state.bill.billProduct?.allBill);
   const user = useSelector((state) => state.user.login.currentUser);
-  const accessToken = user.accessToken;
   useEffect(() => {
-    getAllBill(accessToken, dispatch);
+    getAllBill(user.accessToken, dispatch, user.role);
   }, [visible]);
 
   const handlePress = (item) => {
@@ -46,7 +45,7 @@ const ReceiptScreen = () => {
 
       <ScrollView>
         {bill?.map((item, index) => {
-          let nameHD = item._id.slice(20,24)
+          let nameHD = item._id.slice(20, 24)
           return (
             <TouchableOpacity
               className="py-2 mx-2 border-b border-gray-300"
@@ -84,11 +83,16 @@ const ReceiptScreen = () => {
                     <Text className="w-20 font-semibold text-base text-center text-orange-400">
                       Chờ nhân viên nhận món
                     </Text>
-                  ) : (
-                    <Text className="w-20 font-semibold text-base text-center text-sky-800">
-                      Đã ra món
+                  ) : item.status === "HUY_DON" ? (
+                    <Text className="w-20 font-semibold text-base text-center text-rose-900">
+                      Đơn hủy
                     </Text>
-                  )}
+                  )
+                    : (
+                      <Text className="w-20 font-semibold text-base text-center text-sky-800">
+                        Đã ra món
+                      </Text>
+                    )}
                 </View>
               </View>
             </TouchableOpacity>

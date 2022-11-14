@@ -92,8 +92,8 @@ const AccountScreen = () => {
         </Text>
       </TouchableOpacity>
       <View className="justify-center items-center">
-        <Text>copyright © 2022., VietNam </Text>
-        <Text>Phiên bản: 1.0.0 v1</Text>
+        <Text className="font-semibold">copyright © 2022, VietNam </Text>
+        <Text className="font-semibold">Phiên bản: 1.0.0 v1</Text>
       </View>
     </SafeAreaView>
   );

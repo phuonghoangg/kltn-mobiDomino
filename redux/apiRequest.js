@@ -4,7 +4,7 @@ import { getAllProductFail, getAllProductStart, getAllProductSuccess } from './p
 import { loginFail, loginStart, loginSuccess, logOutFail, logOutStart, logOutSuccess, registerFail, registerStart, registerSuccess } from './userSlice'
 
 // o nha 
-const host = 'http://192.168.1.3:9000'
+// const host = 'http://192.168.1.4:9000'
 
 // wifi cong ty 
 // const host  = 'http://192.168.100.48:9000'
@@ -13,7 +13,7 @@ const host = 'http://192.168.1.3:9000'
 // const host = 'http://192.168.184.196:9000'
 
 // wifi huy 
-// const host = 'http://192.168.123.62:9000'
+const host = 'http://192.168.11.24:9000'
 
 export const loginUser = async(user,dispatch) =>{
     dispatch(loginStart())
@@ -70,10 +70,10 @@ export const addBill = async (accessToken,bill,dispatch) =>{
     }
 }
 
-export const getAllBill = async (accessToken,dispatch,user)=>{
+export const getAllBill = async (accessToken,dispatch,role)=>{
     dispatch(getAllBillStart())
     try {
-        const res = await axios.get(`${host}/v3/bill`,{
+        const res = await axios.get(`${host}/v3/bill/${role}`,{
             headers:{token: `Bearer ${accessToken}`}
         })
         dispatch(getAllBillSuccess(res.data))
@@ -83,12 +83,14 @@ export const getAllBill = async (accessToken,dispatch,user)=>{
 }
 
 
+
 export const getAllBillWithUser = async (accessToken,dispatch,userId)=>{
     dispatch(GetBillUserStart())
     try {
-        const res = await axios.get(`${host}/v3/bill/${userId}`,{
+        const res = await axios.get(`${host}/v3/bill/u/${userId}`,{
             headers:{token: `Bearer ${accessToken}`}
         })
+        console.log(res.data);
         dispatch(GetBillUserSuccess(res.data))
     } catch (error) {
         dispatch(GetBillUserFail())
@@ -133,3 +135,15 @@ export const acceptDishout = async (accessToken,dispatch,payload)=>{
     }
 }
 
+export const rejectBill = async (accessToken,dispatch,payload)=>{
+    console.log("dzo");
+    dispatch(updateStatusStart())
+    try {
+        await axios.post(`${host}/v3/bill/reject-bill`,payload,{
+            headers:{token: `Bearer ${accessToken}`}
+        })
+        dispatch(updateStatusSuccess())
+    } catch (error) {
+        dispatch(updateStatusFail())
+    }
+}
