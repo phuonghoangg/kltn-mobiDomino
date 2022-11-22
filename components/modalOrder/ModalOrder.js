@@ -70,7 +70,7 @@ const ModalOrder = ({ visible, setVisible, children, item }) => {
                         </View>
 
                         <View className="flex-row items-center border-b border-gray-300">
-                            <TouchableOpacity className="py-2 text-xl font-semibold" onPress={user.role ==="chef" ? () => handlePressDishOut() : ()=>handlePressFail()}>
+                            <TouchableOpacity className="py-2 text-xl font-semibold" onPress={user.role ==="cashier" || user.isAdmin ? () => handlePressDishOut() : ()=>handlePressFail()}>
                                 <Text className="text-xl">Hoàn tất hóa đơn</Text>
                             </TouchableOpacity>
                             {user.isAdmin ==true || user.role ==="customer" ? <CheckCircleIcon color={"#005028"} size={30} /> : <></>}

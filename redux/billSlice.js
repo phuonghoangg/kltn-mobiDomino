@@ -21,7 +21,7 @@ const billSlice = createSlice({
     },
     billUser: {
       isFetching:false,
-      currentUser:null,
+      billSuccess:null,
       error:false
     }
   },
@@ -31,13 +31,14 @@ const billSlice = createSlice({
     },
     GetBillUserSuccess:(state,action)=>{
       state.billUser.isFetching = false;
-      state.billUser.currentUser = action.payload;
+      state.billUser.billSuccess = action.payload;
     },
     GetBillUserFail:(state)=>{
       state.billUser.error = true;
     },
     updateStatusStart:(state)=>{
       state.updateStatusBill.isFetching = true;
+      state.updateStatusBill.success = false;
     },
     updateStatusSuccess:(state)=>{
       state.updateStatusBill.isFetching = false;

@@ -61,7 +61,7 @@ const AccountScreen = () => {
         className="mb-4 mx-3 bg-white flex justify-center h-16"
       >
         <Text className="pl-4 text-xl text-sky-700 font-semibold ">
-          Đơn hàng đã đặt
+          Đơn hàng đã hoàn thành
         </Text>
       </TouchableOpacity>
 
