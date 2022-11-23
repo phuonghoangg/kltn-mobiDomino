@@ -70,10 +70,10 @@ export const addBill = async (accessToken,bill,dispatch) =>{
     }
 }
 
-export const getAllBillWithUser = async (accessToken,dispatch,user)=>{
+export const getAllBillWithUser = async (accessToken,dispatch,payload)=>{
     dispatch(GetBillUserStart())
     try {
-        const res = await axios.post(`${host}/v3/bill/success`,user,{
+        const res = await axios.post(`${host}/v3/bill/success`,payload,{
             headers:{token: `Bearer ${accessToken}`}
         })
         dispatch(GetBillUserSuccess(res.data))

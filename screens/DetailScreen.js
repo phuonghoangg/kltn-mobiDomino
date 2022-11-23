@@ -36,7 +36,7 @@ const DetailScreen = () => {
                 <View className="px-2 pt-4">
                     <Text className="text-2xl font-bold text-sky-800">{data.name}</Text>
                     <Text className="text-gray-400 font-normal pt-1 text-lg">{data.description}</Text>
-                    <Text className="text-gray-400 font-normal pt-2 text-lg italic">Nguyên liệu: {data.ingredient}</Text>
+                    {data.ingredient ? <Text className="text-gray-400 font-normal pt-2 text-lg italic">Nguyên liệu: {data.ingredient}</Text> : <></>}
     
                 </View>
                 {data.type ==='pizza' ? (<View className="px-2 pt-4">
