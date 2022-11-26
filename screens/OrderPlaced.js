@@ -113,7 +113,11 @@ const OrderPlaced = () => {
                       <Text className="w-20 font-semibold text-base text-center text-rose-900">
                         Đơn hủy
                       </Text>
-                    ) : (
+                    ) : item.status === "DA_THANH_TOAN" ? 
+                      (<Text className="w-20 font-semibold text-base text-center text-green-700">
+                        Đã nhận tiền
+                      </Text>)
+                    : (
                       <Text className="w-20 font-semibold text-base text-center text-sky-800">
                         Đã ra món
                       </Text>

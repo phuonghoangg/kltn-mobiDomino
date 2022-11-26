@@ -2,13 +2,22 @@ import { View, Text, Modal, TouchableOpacity, ScrollView } from 'react-native'
 import React from 'react'
 import { CheckCircleIcon, CheckIcon, XCircleIcon } from 'react-native-heroicons/outline'
 import { useDispatch, useSelector } from 'react-redux'
-import { acceptBill, acceptChefBill, acceptDishout, rejectBill } from '../../redux/apiRequest'
-import { useNavigation } from '@react-navigation/native'
+import { acceptBill, acceptChefBill, acceptDishout, getAllUser, rejectBill } from '../../redux/apiRequest'
+import { Picker } from '@react-native-picker/picker'
+import { useState } from 'react'
+import { useEffect } from 'react'
+
 const ModalOrder = ({ visible, setVisible, children, item }) => {
+    const [selectedValue, setSelectedValue] = useState("");
+
     const user = useSelector((state) => state.user.login?.currentUser)
+    const allUser = useSelector((state) => state.user.users?.allUsers)
     const accessToken = user.accessToken
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        getAllUser(accessToken, dispatch)
+    }, [])
     const handlePressAcceptBill = () => {
         const payload = {
             id: item._id,
@@ -18,33 +27,39 @@ const ModalOrder = ({ visible, setVisible, children, item }) => {
         setVisible(false)
     }
     const handlePressChefAccept = () => {
-        const payload = {
-            id: item._id,
-            user: user._id
+        if (selectedValue) {
+            const payload = {
+                id: item._id,
+                user: user._id,
+                userPlaced: selectedValue
+            }
+            acceptChefBill(accessToken, dispatch, payload)
+            setVisible(false)
+        } else {
+            console.log("chua chon nguoi ra mon");
         }
-        acceptChefBill(accessToken,dispatch,payload)
-        setVisible(false)
     }
     const handlePressDishOut = () => {
         const payload = {
-            id:item._id
+            id: item._id,
+            user: user._id,
         }
-        acceptDishout(accessToken,dispatch,payload)
+        acceptDishout(accessToken, dispatch, payload)
         setVisible(false)
     }
-    const handlePressRejectBill =() =>{
+    const handlePressRejectBill = () => {
+
         const payload = {
             id: item._id,
-            user: user._id
+            user: user._id,
+            userPlaced: selectedValue,
         }
-        rejectBill(accessToken,dispatch,payload)
+        rejectBill(accessToken, dispatch, payload)
         setVisible(false)
-
     }
-    const handlePressFail = () =>{
-       console.log("k co quyen");
+    const handlePressFail = () => {
+        console.log("k co quyen");
     }
-    // console.log(user.role);
     return (
         <Modal transparent visible={visible} animationType={'fade'}>
             <View style={{ backgroundColor: "#00000080" }} className="flex-1  justify-end items-center bg-slate-400 ">
@@ -57,23 +72,23 @@ const ModalOrder = ({ visible, setVisible, children, item }) => {
                             </TouchableOpacity >
                         </View>
                         <View className="flex-row items-center border-b border-gray-300">
-                            <TouchableOpacity className="py-2 text-xl font-semibold" onPress={user.isAdmin || user.role ==="cashier" ? ()=>handlePressAcceptBill() :  ()=>handlePressFail()}>
+                            <TouchableOpacity className="py-2 text-xl font-semibold" onPress={user.isAdmin || user.role === "cashier" ? () => handlePressAcceptBill() : () => handlePressFail()}>
                                 <Text className="text-xl pr-3">Xác nhận đơn hàng</Text>
                             </TouchableOpacity>
                             {item?.isActiveBill == true ? <CheckCircleIcon color={"#005028"} size={30} /> : <></>}
                         </View>
                         <View className="flex-row items-center border-b border-gray-300">
-                            <TouchableOpacity className="py-2 text-xl font-semibold" onPress={user.role ==="chef" ? () => handlePressChefAccept() : ()=>handlePressFail()}>
+                            <TouchableOpacity className="py-2 text-xl font-semibold" onPress={user.role === "chef" ? () => handlePressChefAccept() : () => handlePressFail()}>
                                 <Text className="text-xl">Hoàn thành món ăn</Text>
                             </TouchableOpacity>
                             {item?.chefActive ? <CheckCircleIcon color={"#005028"} size={30} /> : <></>}
                         </View>
 
                         <View className="flex-row items-center border-b border-gray-300">
-                            <TouchableOpacity className="py-2 text-xl font-semibold" onPress={user.role ==="cashier" || user.isAdmin ? () => handlePressDishOut() : ()=>handlePressFail()}>
+                            <TouchableOpacity className="py-2 text-xl font-semibold" onPress={user.role === "cashier" || user.isAdmin ? () => handlePressDishOut() : () => handlePressFail()}>
                                 <Text className="text-xl">Hoàn tất hóa đơn</Text>
                             </TouchableOpacity>
-                            {user.isAdmin ==true || user.role ==="customer" ? <CheckCircleIcon color={"#005028"} size={30} /> : <></>}
+                            {/* {item?.userPlaced ? <CheckCircleIcon color={"#005028"} size={30} /> : <></>} */}
                         </View>
 
                         <View className="flex-row items-center border-b border-gray-300" >
@@ -84,6 +99,23 @@ const ModalOrder = ({ visible, setVisible, children, item }) => {
 
                         </View>
                     </View>
+                    {/* chon nguoi dat mon */}
+                    {user.role === 'chef' ? <Picker
+                        selectedValue={selectedValue}
+                        style={{ height: 50, width: 150 }}
+                        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                    >
+                        {
+                            allUser?.map((item, index) => {
+                                if (item.role === 'cashier' || item.isAdmin) {
+                                    return <Picker.Item key={index} label={item.username} value={item._id} />
+                                }
+                            })
+                        }
+
+                    </Picker> : <></>}
+
+
                     <View>
                         <Text className="text-2xl text-sky-800 font-bold pt-5">Chi Tiết Đơn Hàng</Text>
                     </View>

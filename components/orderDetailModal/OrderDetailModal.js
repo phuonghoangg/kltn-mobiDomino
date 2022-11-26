@@ -6,7 +6,7 @@ import {
   XCircleIcon,
 } from "react-native-heroicons/outline";
 import { useDispatch, useSelector } from "react-redux";
-import { failBill } from "../../redux/apiRequest";
+import { failBill, takeMoney } from "../../redux/apiRequest";
 
 const OrderDetailModal = ({ visible, setVisible, children, item }) => {
   const user = useSelector((state) => state.user.login?.currentUser);
@@ -19,11 +19,18 @@ const OrderDetailModal = ({ visible, setVisible, children, item }) => {
     failBill(user.accessToken,dispatch,payload)
     setVisible(false)
   };
+  const handleTakeMoney = () =>{
+   const payload = {
+      id:item._id,
+      user:user._id
+    }
+    takeMoney(user.accessToken,dispatch,payload)
+    setVisible(false)
+  }
 
   const handlePressFail = () => {
     console.log("k co quyen");
   };
-
   return (
     <Modal transparent visible={visible} animationType={"fade"}>
       <View
@@ -57,6 +64,23 @@ const OrderDetailModal = ({ visible, setVisible, children, item }) => {
               }
             >
               <Text className="text-xl pr-3">Đền hóa đơn</Text>
+            </TouchableOpacity>
+            {item?.isActiveBill == true ? (
+              <CheckCircleIcon color={"#005028"} size={30} />
+            ) : (
+              <></>
+            )}
+          </View>
+          <View className="flex-row items-center border-b border-gray-300">
+            <TouchableOpacity
+              className="py-2 text-xl font-semibold"
+              onPress={
+                user.isAdmin || user.role === "cashier"
+                  ? () => handleTakeMoney()
+                  : () => handlePressFail()
+              }
+            >
+              <Text className="text-xl pr-3">Nhận tiền</Text>
             </TouchableOpacity>
             {item?.isActiveBill == true ? (
               <CheckCircleIcon color={"#005028"} size={30} />

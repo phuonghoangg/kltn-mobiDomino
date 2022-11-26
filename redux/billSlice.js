@@ -32,7 +32,6 @@ const billSlice = createSlice({
     GetBillUserSuccess:(state,action)=>{
       state.billUser.isFetching = false;
       state.billUser.billSuccess = action.payload;
-      state.billProduct.allBill = null
     },
     GetBillUserFail:(state)=>{
       state.billUser.error = true;
@@ -86,7 +85,6 @@ const billSlice = createSlice({
     getAllBillSuccess:(state,action)=>{
       state.billProduct.isFetching=false
       state.billProduct.allBill = action.payload
-      state.billUser.billSuccess = null
     },
     getAllBillFail:(state)=>{
       state.billProduct.error=true
