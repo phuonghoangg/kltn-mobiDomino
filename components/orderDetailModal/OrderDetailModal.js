@@ -93,7 +93,7 @@ const OrderDetailModal = ({ visible, setVisible, children, item }) => {
             <TouchableOpacity
               className="py-2 text-xl font-semibold"
               onPress={
-                (user.isAdmin || user.role === "cashier") && (item?.status ==='NHAN_VIEN_NHAN_MON' || item?.status === 'DA_THANH_TOAN')
+                (user.isAdmin || user.role === "cashier") && (item?.status ==='NHAN_VIEN_NHAN_MON' || item?.status === 'DA_THANH_TOAN' || item?.status ==='FAIL_BILL')
                   ? () => handleTakeMoney()
                   : () => handlePressFail()
               }
