@@ -16,7 +16,7 @@ const ReceiptScreen = () => {
   const bill = useSelector((state) => state.bill.billProduct?.allBill);
   const user = useSelector((state) => state.user.login.currentUser);
   useEffect(() => {
-    getAllBill(user.accessToken, dispatch, user.role);
+    getAllBill(user.accessToken, dispatch, user.role,user);
   }, [visible]);
 
   const handlePress = (item) => {

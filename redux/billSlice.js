@@ -58,6 +58,7 @@ const billSlice = createSlice({
     },
     resetProduct:(state)=>{
       state.productCart.listProduct = []
+      state.productSelectId = []
       state.productCart.price = 0
     },
     addProductSelectId:(state,action)=>{

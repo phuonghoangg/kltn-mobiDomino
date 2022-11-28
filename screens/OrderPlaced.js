@@ -57,7 +57,7 @@ const OrderPlaced = () => {
             <Text className="w-20 text-lg font-bold text-sky-800">Hóa đơn</Text>
           </View>
           <View>
-            <Text className="w-20 text-lg font-bold text-sky-800">Tên</Text>
+            <Text className="w-25 text-lg font-bold text-sky-800">Người nhận</Text>
           </View>
           <View className="w-20 items-end">
             <Text className=" text-lg font-bold text-sky-800 ">Giá</Text>
@@ -88,7 +88,7 @@ const OrderPlaced = () => {
                   </View>
                   <View>
                     <Text className="w-20 text-base font-normal">
-                      {item.user.username}
+                      {item.userPlaced.username}
                     </Text>
                   </View>
                   <View className="w-20  items-end ">
@@ -117,7 +117,12 @@ const OrderPlaced = () => {
                       (<Text className="w-20 font-semibold text-base text-center text-green-700">
                         Đã nhận tiền
                       </Text>)
-                    : (
+                    : item.status ==="BEP_XAC_NHAN" ? (
+                      <Text className="w-20 font-semibold text-base text-center text-yellow-800">
+                        Chờ nhận món
+                      </Text>
+                    )
+                     :(
                       <Text className="w-20 font-semibold text-base text-center text-sky-800">
                         Đã ra món
                       </Text>

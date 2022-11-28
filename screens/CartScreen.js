@@ -12,18 +12,18 @@ const CartScreen = () => {
   const [select, setSelect] = useState("");
 
   const dataDropdown = [
-    { label: "item 1", value: "Bàn 1" },
-    { label: "item 2", value: "Bàn 2" },
-    { label: "item 3", value: "Bàn 3" },
-    { label: "item 4", value: "Bàn 4" },
-    { label: "item 5", value: "Bàn 5" },
-    { label: "item 6", value: "Bàn 6" },
-    { label: "item 7", value: "Bàn 7" },
-    { label: "item 8", value: "Bàn 8" },
-    { label: "item 9", value: "Bàn 9" },
-    { label: "item 10", value: "Bàn 10" },
-    { label: "item 11", value: "Bàn 11" },
-    { label: "item 12", value: "Bàn 12" },
+    { label: "item 1", value: "1" },
+    { label: "item 2", value: "2" },
+    { label: "item 3", value: "3" },
+    { label: "item 4", value: "4" },
+    { label: "item 5", value: "5" },
+    { label: "item 6", value: "6" },
+    { label: "item 7", value: "7" },
+    { label: "item 8", value: "8" },
+    { label: "item 9", value: "9" },
+    { label: "item 10", value: "10" },
+    { label: "item 11", value: "11" },
+    { label: "item 12", value: "12" },
     { label: "item mua ve", value: "Mua về" },
   ];
   const CartProduct = useSelector((state) => state.bill?.productCart);

@@ -84,12 +84,12 @@ const ModalOrder = ({ visible, setVisible, children, item }) => {
                             {item?.chefActive ? <CheckCircleIcon color={"#005028"} size={30} /> : <></>}
                         </View>
 
-                        <View className="flex-row items-center border-b border-gray-300">
+                        {/* <View className="flex-row items-center border-b border-gray-300">
                             <TouchableOpacity className="py-2 text-xl font-semibold" onPress={user.role === "cashier" || user.isAdmin ? () => handlePressDishOut() : () => handlePressFail()}>
                                 <Text className="text-xl">Hoàn tất hóa đơn</Text>
                             </TouchableOpacity>
+                        </View> */}
                             {/* {item?.userPlaced ? <CheckCircleIcon color={"#005028"} size={30} /> : <></>} */}
-                        </View>
 
                         <View className="flex-row items-center border-b border-gray-300" >
                             <TouchableOpacity className="py-2 text-xl font-semibold" onPress={() => handlePressRejectBill()}>

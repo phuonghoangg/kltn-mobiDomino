@@ -6,12 +6,22 @@ import {
   XCircleIcon,
 } from "react-native-heroicons/outline";
 import { useDispatch, useSelector } from "react-redux";
-import { failBill, takeMoney } from "../../redux/apiRequest";
+import { acceptDishout, failBill, takeMoney } from "../../redux/apiRequest";
 
 const OrderDetailModal = ({ visible, setVisible, children, item }) => {
   const user = useSelector((state) => state.user.login?.currentUser);
  
   const dispatch = useDispatch()
+
+  const handlePressDishOut = () => {
+    const payload = {
+        id: item._id,
+        user: user._id,
+    }
+    acceptDishout(user.accessToken, dispatch, payload)
+    setVisible(false)
+}
+
   const handlePressFailBill = () => {
     const payload = {
         id:item._id
@@ -54,11 +64,19 @@ const OrderDetailModal = ({ visible, setVisible, children, item }) => {
               <XCircleIcon color={"#A0AEC0"} size={30} />
             </TouchableOpacity>
           </View>
+
+          <View className="flex-row items-center border-b border-gray-300">
+                            <TouchableOpacity className="py-2 text-xl font-semibold" onPress={user.role === "cashier" || user.isAdmin ? () => handlePressDishOut() : () => handlePressFail()}>
+                                <Text className="text-xl">Hoàn tất hóa đơn</Text>
+                            </TouchableOpacity>
+                            {/* {item?.userPlaced ? <CheckCircleIcon color={"#005028"} size={30} /> : <></>} */}
+                        </View>
+
           <View className="flex-row items-center border-b border-gray-300">
             <TouchableOpacity
               className="py-2 text-xl font-semibold"
               onPress={
-                user.isAdmin || user.role === "cashier"
+                (user.isAdmin || user.role === "cashier") && (item?.status ==='NHAN_VIEN_NHAN_MON' || item?.status ==='FAIL_BILL')
                   ? () => handlePressFailBill()
                   : () => handlePressFail()
               }
@@ -75,7 +93,7 @@ const OrderDetailModal = ({ visible, setVisible, children, item }) => {
             <TouchableOpacity
               className="py-2 text-xl font-semibold"
               onPress={
-                user.isAdmin || user.role === "cashier"
+                (user.isAdmin || user.role === "cashier") && (item?.status ==='NHAN_VIEN_NHAN_MON' || item?.status === 'DA_THANH_TOAN')
                   ? () => handleTakeMoney()
                   : () => handlePressFail()
               }
