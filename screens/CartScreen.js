@@ -181,7 +181,7 @@ const CartScreen = () => {
               className="w-11/12 h-12 bg-sky-700 justify-center items-center rounded-md"
             >
               <Text className="text-white text-lg font-semibold">
-                Thanh toán
+                Đặt món
               </Text>
             </TouchableOpacity>
           </View>
