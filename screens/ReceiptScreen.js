@@ -7,6 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
 import ModalOrder from "../components/modalOrder/ModalOrder";
 import Modal from "react-native-modal";
+import dayjs from "dayjs";
 
 const ReceiptScreen = () => {
   const [visible, setVisible] = useState(false);
@@ -33,8 +34,11 @@ const ReceiptScreen = () => {
         <View>
           <Text className="w-20 text-lg font-bold text-sky-800">Tên</Text>
         </View>
-        <View className="w-20 items-end">
-          <Text className=" text-lg font-bold text-sky-800 ">Giá</Text>
+        <View>
+          <Text className="w-20 text-lg font-bold text-sky-800">thời gian</Text>
+        </View>
+        <View className="w-20 items-center">
+          <Text className=" text-lg font-bold text-sky-800 px-1">Giá</Text>
         </View>
         <View>
           <Text className="w-25 text-lg font-bold text-sky-800">
@@ -65,7 +69,13 @@ const ReceiptScreen = () => {
                     {item.user.username}
                   </Text>
                 </View>
-                <View className="w-20  items-end ">
+                <View className="w-20  items-center ">
+                  <Text className="text-base font-semibold text-black ">
+                    {dayjs(item.createdAt).format('HH:mm')}
+                    {/* dayjs(item.createdDate).format('DD-MM-YYYY') */}
+                  </Text>
+                </View>
+                <View className="w-20  items-end px-1">
                   <Text className="text-base font-semibold text-red-600 ">
                     {item.priceBill} đ
                   </Text>

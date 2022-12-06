@@ -4,10 +4,10 @@ import { getAllProductFail, getAllProductStart, getAllProductSuccess } from './p
 import { getAllUserFail, getAllUserStart, getAllUserSuccess, loginFail, loginStart, loginSuccess, logOutFail, logOutStart, logOutSuccess, registerFail, registerStart, registerSuccess } from './userSlice'
 
 // o nha 
-const host = 'http://192.168.1.4:9000'
+// const host = 'http://192.168.1.4:9000'
 
 // wifi cong ty 
-// const host  = 'http://192.168.100.48:9000'
+const host  = 'http://192.168.0.131:9000'
 
 // wifi nhan
 // const host = 'http://192.168.1.26:9000'
